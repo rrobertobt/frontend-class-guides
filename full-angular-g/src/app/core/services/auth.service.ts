@@ -61,6 +61,14 @@ export class AuthService {
     return res.user;
   }
 
+  async register(email: string, name: string, password: string): Promise<User> {
+    const res = await firstValueFrom(
+      this.http.post<{ user: User }>(`${API_BASE_URL}/auth/register`, { email, name, password }, { withCredentials: true })
+    );
+    this.saveUser(res.user);
+    return res.user;
+  }
+
   clearLocalUser() {
     this.saveUser(null);
   }

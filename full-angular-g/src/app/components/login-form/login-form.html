@@ -11,6 +11,8 @@
     <input name="password" [(ngModel)]="password" type="password" autocomplete="current-password" />
   </label>
 
+  <p style="opacity: 0.8">¿No tienes cuenta? <a routerLink="/register">Regístrate</a></p>
+
   <button type="submit" [disabled]="loading()">Login</button>
 
   @if (error(); as msg) {

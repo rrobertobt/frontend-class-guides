@@ -1,7 +1,34 @@
-<h2>Todos (placeholder)</h2>
+<h2>Todos</h2>
 
-@if (auth.user(); as u) {
-<p>Bienvenido, {{ u.name }} ({{ u.email }})</p>
+<div style="display: flex; gap: 8px; max-width: 420px; margin-bottom: 12px">
+  <input style="flex: 1" placeholder="Nueva tarea" [(ngModel)]="newTitle" (keyup.enter)="add()" />
+  <button (click)="add()" [disabled]="loading()">Agregar</button>
+</div>
+
+@if (error(); as msg) {
+<p style="color: crimson; margin: 8px 0">{{ msg }}</p>
+} @if (loading()) {
+<p>Cargando...</p>
+} @else if (todos().length > 0) {
+<ul style="padding-left: 0; max-width: 520px">
+  @for (t of todos(); track t.id) {
+  <li style="list-style: none; margin: 6px 0; display: flex; align-items: center; gap: 10px">
+    <input type="checkbox" [checked]="t.done" (change)="toggle(t)" />
+
+    <span
+      style="flex: 1"
+      [style.textDecoration]="t.done ? 'line-through' : 'none'"
+      [style.opacity]="t.done ? '0.6' : '1'"
+    >
+      {{ t.title }}
+    </span>
+
+    <button (click)="remove(t)" [disabled]="loading()">❌</button>
+  </li>
+  }
+</ul>
 } @else {
-<p>No hay usuario en memoria aún.</p>
+<p>No hay tareas aún</p>
 }
+
+<p style="opacity: 0.8">Pendientes: {{ pendingCount() }} / Total: {{ todos().length }}</p>
