@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Todo List Vanilla JS</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      max-width: 420px;
+      margin: 40px auto;
+    }
+
+    .todo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .todo.done span {
+      text-decoration: line-through;
+      opacity: 0.6;
+    }
+
+    ul {
+      padding-left: 0;
+    }
+
+    li {
+      list-style: none;
+      margin: 6px 0;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .stats {
+      margin-top: 12px;
+      font-size: 14px;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Todo List (Vanilla JS)</h2>
+
+  <input id="taskInput" placeholder="Nueva tarea" />
+  <button onclick="addTask()">Agregar</button>
+
+  <ul id="list"></ul>
+
+  <div class="stats" id="stats"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

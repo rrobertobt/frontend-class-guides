@@ -1,0 +1,19 @@
+<main class="main-page">
+
+  <nav style="display: flex; gap: 12px; align-items: center; margin-bottom: 16px">
+    <a routerLink="/login">Login</a>
+    <a routerLink="/todos">Todos</a>
+    
+    <span style="margin-left: auto">
+      @if (auth.user(); as u) {
+        {{ u.name }}
+        <button (click)="logout()">Logout</button>
+      } @else {
+        <em>Not logged in</em>
+      }
+    </span>
+  </nav>
+  
+  <router-outlet />
+  
+</main>

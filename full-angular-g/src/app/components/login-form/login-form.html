@@ -1,0 +1,19 @@
+<h2>Login</h2>
+
+<form (ngSubmit)="onSubmit()" style="display: grid; gap: 10px; max-width: 320px">
+  <label>
+    Email
+    <input name="email" [(ngModel)]="email" autocomplete="email" />
+  </label>
+
+  <label>
+    Password
+    <input name="password" [(ngModel)]="password" type="password" autocomplete="current-password" />
+  </label>
+
+  <button type="submit" [disabled]="loading()">Login</button>
+
+  @if (error(); as msg) {
+  <p style="color: crimson">{{ msg }}</p>
+  }
+</form>

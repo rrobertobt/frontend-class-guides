@@ -1,0 +1,30 @@
+<h2>Todo List (Angular)</h2>
+
+<input placeholder="Nueva tarea" [(ngModel)]="newTitle" (keyup.enter)="addTodo()" />
+<button (click)="addTodo()">Agregar</button>
+
+@if (todos().length > 0) {
+<ul>
+  @for (todo of todos(); track todo.id) {
+  <li>
+    <label>
+      <input type="checkbox" [checked]="todo.done" (change)="toggle(todo.id)" />
+      <span [style.textDecoration]="todo.done ? 'line-through' : 'none'">
+        {{ todo.title }}
+      </span>
+    </label>
+
+    <button (click)="remove(todo.id)">❌</button>
+  </li>
+  }
+</ul>
+} @else {
+<p>No hay tareas aún</p>
+}
+
+<p>
+  Pendientes:
+  {{ pendingTodos() }}
+  /
+  {{ todos().length }}
+</p>

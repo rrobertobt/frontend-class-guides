@@ -1,0 +1,7 @@
+<h2>Todos (placeholder)</h2>
+
+@if (auth.user(); as u) {
+<p>Bienvenido, {{ u.name }} ({{ u.email }})</p>
+} @else {
+<p>No hay usuario en memoria aún.</p>
+}
